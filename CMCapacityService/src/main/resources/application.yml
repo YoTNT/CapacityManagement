@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: capacityservice
+  profiles:
+    active:
+      default
+    cloud:
+      config:
+        enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+    platform: org.hibernate.dialect.H2Dialect
+        
+server:
+  port: 7100
+  
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8888/eureka
