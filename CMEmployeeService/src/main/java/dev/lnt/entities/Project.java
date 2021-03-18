@@ -35,9 +35,11 @@ public class Project {
 	private Date endDate;
 	@Column(name = "project_category")
 	private String projectCategory;			// TODO: Enum possible
-	@OneToOne
-	@JoinColumn(name = "project_manager_id", referencedColumnName = "id")
-	private Employee manager;
+//	@OneToOne
+//	@JoinColumn(name = "project_manager_id", referencedColumnName = "id")
+//	private Employee manager;
+	@Column(name = "project_manager_id")
+	private int manager;
 	@Column(name = "customer_code")
 	private int customerCode;
 	@Column(name = "customer_name")

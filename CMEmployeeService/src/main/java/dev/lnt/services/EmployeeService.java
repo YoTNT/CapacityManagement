@@ -14,7 +14,7 @@ public interface EmployeeService {
 	List<Employee> getAllEmployeesByGrade(String grade);
 	List<Employee> getAllEmployeesByEmployeeStatus(String status);
 	
-	Employee updateEmployee(Employee employee) throws Throwable;
+	Employee updateEmployee(Employee employee);
 	
 	boolean deleteEmployee(Employee employee);
 	

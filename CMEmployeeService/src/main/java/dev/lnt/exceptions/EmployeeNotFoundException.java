@@ -1,0 +1,9 @@
+package dev.lnt.exceptions;
+
+public class EmployeeNotFoundException extends RuntimeException{
+	
+	public EmployeeNotFoundException(String msg) {
+		super(msg);
+	}
+	
+}

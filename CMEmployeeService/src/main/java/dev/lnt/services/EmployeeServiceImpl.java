@@ -3,12 +3,15 @@ package dev.lnt.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import dev.lnt.entities.Employee;
+import dev.lnt.exceptions.EmployeeNotFoundException;
 import dev.lnt.repositories.EmployeeRepository;
 
 @Service
@@ -18,10 +21,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Autowired
 	EmployeeRepository er;
 	
+	private static Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
+	
 	@Override
 	public Employee createEmployee(Employee employee) {
-		
+		logger.info("create new employee with: " + employee);
 		Employee newEmployee = er.save(employee);
+		logger.info("employee created. new employee: " + newEmployee);
 		return newEmployee;
 		
 	}
@@ -53,14 +59,18 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public Employee updateEmployee(Employee employee) throws Exception{ // General exception for now!
+	public Employee updateEmployee(Employee employee){ // General exception for now!
 		
 		int targetId = employee.getId();
 		
-		if(!er.findById(targetId).isPresent())
-			throw new Exception("Cannot update an unexisted employee with ID: " + targetId);
-		else
+		if(!er.findById(targetId).isPresent()) {
+			logger.info("try to update employee with employee id ["+targetId+"] but not found in database. update failed");
+			throw new EmployeeNotFoundException("Cannot update an unexisted employee with ID: " + targetId);
+		}
+		else {
+			logger.info("update succeed");
 			return er.save(employee);
+		}	
 		
 	}
 

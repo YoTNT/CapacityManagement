@@ -26,9 +26,11 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
-	@OneToOne
-	@JoinColumn(name = "seat_id", referencedColumnName = "id")
-	private Seat seat;
+//	@OneToOne
+//	@JoinColumn(name = "seat_id", referencedColumnName = "id")
+//	private Seat seat;
+	@Column(name = "seat_id")
+	private int seat;
 	@Column(name = "name")
 	private String name;
 	@Column(name = "grade")

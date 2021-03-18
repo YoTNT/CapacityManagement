@@ -13,6 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ProjectRepository extends JpaRepository<Project, Integer>{
 
 	List<Project> findByProjectCategory(String projectCategory);
-	List<Project> findByManager(Employee manager);
 	
 }

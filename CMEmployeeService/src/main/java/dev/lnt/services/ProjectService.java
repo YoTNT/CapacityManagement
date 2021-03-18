@@ -12,7 +12,7 @@ public interface ProjectService {
 	Optional<Project> getProjectById(int id);
 	List<Project> getAllProjects();
 	
-	Project updateProject(Project project) throws Throwable;
+	Project updateProject(Project project);
 	
 	boolean deleteProject(Project project);
 	
