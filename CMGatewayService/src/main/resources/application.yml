@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: gatewayservice
+  
+  cloud:
+    gateway:
+      routes:
+      - id: employeeservice
+        uri: http://localhost:7200
+        predicates:
+        - Path=/es/**
+        filters:
+        - RewritePath=/es(?<segment>/?.*),$\{segment}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG         
+    
+server:
+  port: 8000
+  
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 2
+    lease-renewal-interval-in-seconds: 1
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8888/eureka
