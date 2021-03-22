@@ -11,6 +11,11 @@ spring:
         - Path=/es/**
         filters:
         - RewritePath=/es(?<segment>/?.*),$\{segment}
+        - name: Logging
+          args:
+            baseMessage: Gateway Custom Message
+            preLogger: true
+            postLogger: true
 
 logging:
   level:
