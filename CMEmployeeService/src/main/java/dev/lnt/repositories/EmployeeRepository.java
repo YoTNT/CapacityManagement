@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
 
-//	Employee findBySeatId(int seatId);
 	List<Employee> findByGrade(String grade);
 	List<Employee> findByEmployeeStatus(String employeeStatus);
 	List<Employee> findByBilledStatus(String billedStatus);

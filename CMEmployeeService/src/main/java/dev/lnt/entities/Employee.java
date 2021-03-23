@@ -6,8 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,13 +27,19 @@ public class Employee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "ps_number")
 	private int id;
-//	@OneToOne
-//	@JoinColumn(name = "seat_id", referencedColumnName = "id")
-//	private Seat seat;
-	@Column(name = "seat_id")
-	private int seat;
+
+	@OneToOne
+	@JoinTable(name = "seat",
+	joinColumns = {@JoinColumn(name = "ps_number")},
+	inverseJoinColumns = {@JoinColumn(name = "seat_id")})
+	@JsonIgnoreProperties({"employee"})
+	private Seat seat;
+	
+	@OneToOne
+	private Project project;
+	
 	@Column(name = "name")
 	private String name;
 	@Column(name = "grade")

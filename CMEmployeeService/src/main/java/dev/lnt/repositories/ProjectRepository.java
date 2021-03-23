@@ -2,7 +2,6 @@ package dev.lnt.repositories;
 
 import org.springframework.stereotype.Repository;
 
-import dev.lnt.entities.Employee;
 import dev.lnt.entities.Project;
 
 import java.util.List;

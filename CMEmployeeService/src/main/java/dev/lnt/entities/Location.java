@@ -1,10 +1,15 @@
 package dev.lnt.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +27,7 @@ public class Location {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "location_id")
 	private int id;
 	@Column(name = "base_bu")
 	private String baseBU;
@@ -32,5 +37,9 @@ public class Location {
 	private String baseLocation;
 	@Column(name = "maximum_seats")
 	private int maximumSeats;
+	@Column(name = "parent_id")
+	private int parentId;
 	
+	@OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
+	private Set<Seat> seats = new HashSet<Seat>();
 }

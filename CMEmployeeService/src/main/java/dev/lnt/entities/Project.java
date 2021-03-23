@@ -1,6 +1,5 @@
 package dev.lnt.entities;
 
-import java.time.Instant;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,11 +36,12 @@ public class Project {
 	private Date endDate;
 	@Column(name = "project_category")
 	private String projectCategory;			// TODO: Enum possible
-//	@OneToOne
-//	@JoinColumn(name = "project_manager_id", referencedColumnName = "id")
-//	private Employee manager;
-	@Column(name = "project_manager_id")
-	private int manager;
+	
+	@OneToOne
+	@JoinColumn(name = "manager_ps_number", referencedColumnName = "ps_number")
+	@JsonIgnoreProperties({"project"})
+	private Employee manager;
+	
 	@Column(name = "customer_code")
 	private int customerCode;
 	@Column(name = "customer_name")

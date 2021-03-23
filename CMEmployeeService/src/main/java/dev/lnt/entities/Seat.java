@@ -6,8 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,11 +27,17 @@ public class Seat {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "seat_id")
 	private int id;
-	@OneToOne
-	@JoinColumn(name = "location_id", referencedColumnName = "id")
+	
+	@ManyToOne
+	@JoinColumn(name = "location_id")
+	@JsonIgnoreProperties({"seats"})
 	private Location location;
+	
+	@OneToOne(mappedBy = "seat")
+	private Employee employee;
+	
 	@Column(name = "seat_location")
 	private String seatLocation;
 	@Column(name = "cost")
