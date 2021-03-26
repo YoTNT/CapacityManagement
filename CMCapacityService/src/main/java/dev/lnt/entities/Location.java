@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,7 +27,7 @@ public class Location {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "location_id")
+	@Column(name = "location_id")	// New Way
 	private int id;
 	@Column(name = "base_bu")
 	private String baseBU;
@@ -40,7 +38,8 @@ public class Location {
 	@Column(name = "maximum_seats")
 	private int maximumSeats;
 	
+//	@OneToMany(fetch = FetchType.LAZY)	// New Way
 	@OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
-	private Set<Seat> seats = new HashSet<Seat>();
+	private Set<Seat> seats;
 	
 }

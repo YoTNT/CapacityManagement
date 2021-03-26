@@ -8,11 +8,19 @@ spring:
       config:
         enabled: true
   datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: password
-    platform: org.hibernate.dialect.H2Dialect
+#    url: jdbc:h2:mem:testdb
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password: password
+#    platform: org.hibernate.dialect.H2Dialect
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://capacity.cty1gon9nn61.us-east-2.rds.amazonaws.com:3306/capacity?user=admin&password=admin123123
+    initialization-mode: always
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true
         
 server:
   port: 7100

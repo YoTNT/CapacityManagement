@@ -2,6 +2,7 @@ package dev.lnt.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,11 +31,14 @@ public class Seat {
 	@Column(name = "seat_id")
 	private int id;
 	
+//	@ManyToOne(fetch = FetchType.LAZY)	// New Way
+//	@JoinColumn(name = "location_id", referencedColumnName = "id")	// New Way
 	@ManyToOne
 	@JoinColumn(name = "location_id")
 	private Location location;
 	
 	@OneToOne(mappedBy = "seat")
+	@JsonIgnore
 	private Employee employee;
 	
 	@Column(name = "seat_location")
@@ -43,6 +47,5 @@ public class Seat {
 	private float cost;
 	@Column(name = "availability_status")
 	private String availabilityStatus;
-	
 	
 }

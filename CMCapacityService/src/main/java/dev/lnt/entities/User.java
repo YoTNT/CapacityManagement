@@ -2,47 +2,38 @@ package dev.lnt.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Table(name = "seat")
-public class Seat {
+@Table(name = "users")
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "seat_id")
+	@Column(name = "user_id")
 	private int id;
-	
-	@ManyToOne
-	@JoinColumn(name = "location_id")
-	private Location location;
-	
-	@OneToOne(mappedBy = "seat")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ps_number")
 	private Employee employee;
-	
-	@Column(name = "seat_location")
-	private String seatLocation;
-	@Column(name = "cost")
-	private float cost;
-	@Column(name = "availability_status")
-	private String availabilityStatus;
-	
+	@Column(name = "email")
+	private String email;
+	@Column(name = "password")
+	private String password;
 	
 }
