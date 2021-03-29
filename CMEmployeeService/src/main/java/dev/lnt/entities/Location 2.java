@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,15 +37,9 @@ public class Location {
 	private String baseLocation;
 	@Column(name = "maximum_seats")
 	private int maximumSeats;
+	@Column(name = "parent_id")
+	private int parentId;
 	
 	@OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
-	@JsonIgnore
-	private Set<Seat> seats;
-
-	@Override
-	public String toString() {
-		return "Location [id=" + id + ", baseBU=" + baseBU + ", baseDept=" + baseDept + ", baseLocation=" + baseLocation
-				+ ", maximumSeats=" + maximumSeats + "]";
-	}
-	
+	private Set<Seat> seats = new HashSet<Seat>();
 }
