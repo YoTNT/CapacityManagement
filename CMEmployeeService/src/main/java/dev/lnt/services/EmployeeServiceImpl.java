@@ -11,6 +11,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import dev.lnt.entities.Employee;
+import dev.lnt.entities.Seat;
 import dev.lnt.exceptions.EmployeeNotFoundException;
 import dev.lnt.repositories.EmployeeRepository;
 
@@ -86,6 +87,22 @@ public class EmployeeServiceImpl implements EmployeeService{
 			return true;
 		}
 		
+	}
+
+	@Override
+	public Seat getSeatByEmployeeId(int id) {
+		logger.info("get seat using employee'id - process started");
+		Optional<Employee> employee = er.findById(id);
+		if(!employee.isPresent()) {
+			logger.info("requesting employee not found");
+			throw new EmployeeNotFoundException("Employee with id [" + id + "] not found");
+		}
+		else {
+			logger.info("employee found");
+			Seat seat = employee.get().getSeat();
+			logger.info("found seat: " + seat);
+			return seat;
+		}
 	}
 
 }

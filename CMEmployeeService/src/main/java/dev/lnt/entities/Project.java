@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -44,10 +45,13 @@ public class Project {
 	@JoinTable(name = "employee_project",
 	joinColumns = {@JoinColumn(name = "project_id")},
 	inverseJoinColumns = {@JoinColumn(name = "ps_number")})
+	@JsonIgnoreProperties({"seat","user","employeeStatus","billedStatus","hibernateLazyInitializer"})
 	private Employee manager;
 	
 	@Column(name = "customer_code")
 	private int customerCode;
 	@Column(name = "customer_name")
 	private String customerName;
+	
+	
 }

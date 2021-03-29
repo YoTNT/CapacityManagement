@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import dev.lnt.entities.Employee;
+import dev.lnt.entities.Seat;
 
 public interface EmployeeService {
 
@@ -18,4 +19,6 @@ public interface EmployeeService {
 	
 	boolean deleteEmployee(Employee employee);
 	
+	
+	Seat getSeatByEmployeeId(int id);
 }

@@ -41,6 +41,13 @@ public class Location {
 	private int maximumSeats;
 	
 	@OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
-	private Set<Seat> seats = new HashSet<Seat>();
-	
+	@JsonIgnore
+	private Set<Seat> seats;
+
+	@Override
+	public String toString() {
+		return "Location [id=" + id + ", baseBU=" + baseBU + ", baseDept=" + baseDept + ", baseLocation=" + baseLocation
+				+ ", maximumSeats=" + maximumSeats + "]";
+	}
+
 }

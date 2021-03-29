@@ -35,6 +35,7 @@ public class Seat {
 	private Location location;
 	
 	@OneToOne(mappedBy = "seat")
+	@JsonIgnore
 	private Employee employee;
 	
 	@Column(name = "seat_location")
@@ -44,5 +45,10 @@ public class Seat {
 	@Column(name = "availability_status")
 	private String availabilityStatus;
 	
+	@Override
+	public String toString() {
+		return "Seat [id=" + id + ", location=" + location + ", seatLocation=" + seatLocation + ", cost=" + cost
+				+ ", availabilityStatus=" + availabilityStatus + "]";
+	}
 	
 }

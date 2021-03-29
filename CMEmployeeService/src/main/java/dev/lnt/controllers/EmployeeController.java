@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.lnt.entities.Employee;
+import dev.lnt.entities.Seat;
 import dev.lnt.exceptions.EmployeeNotFoundException;
 import dev.lnt.services.EmployeeService;
 import lombok.AllArgsConstructor;
@@ -63,6 +64,14 @@ public class EmployeeController {
 					.status(HttpStatus.FOUND)
 					.body(employeeService.getEmployeeById(id).get());
 		}
+	}
+	
+	@GetMapping("/{id}/seat")
+	public ResponseEntity<Seat> getSeatByEmployeeId(@PathVariable int id){
+		logger.info("get seat by employee id - process started");
+		return ResponseEntity
+				.status(HttpStatus.OK)
+				.body(employeeService.getSeatByEmployeeId(id));
 	}
 	
 	@GetMapping

@@ -36,12 +36,15 @@ public class Employee {
 	@JoinTable(name = "employee_seat",
 	joinColumns = {@JoinColumn(name = "ps_number")},
 	inverseJoinColumns = {@JoinColumn(name = "seat_id")})
+	@JsonIgnore
 	private Seat seat;
 	
 	@OneToOne(mappedBy = "manager", fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Project project;
 	
 	@OneToOne(mappedBy = "employee", fetch = FetchType.LAZY)
+	@JsonIgnore
 	private User user;
 	
 	@Column(name = "name")
@@ -52,6 +55,12 @@ public class Employee {
 	private String employeeStatus;		// TODO: Enum possible
 	@Column(name = "billed_status")
 	private String billedStatus;		// TODO: Enum possible
+	
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", grade=" + grade + ", employeeStatus=" + employeeStatus
+				+ ", billedStatus=" + billedStatus + "]";
+	}
 	
 	
 }
