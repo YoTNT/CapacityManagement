@@ -1,6 +1,5 @@
 package dev.lnt.entities;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;

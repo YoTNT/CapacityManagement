@@ -2,6 +2,7 @@ package dev.lnt.controllers;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.lnt.entities.Location;
 import dev.lnt.exceptions.LocationNotFoundException;
 import dev.lnt.services.LocationService;
+import dev.lnt.entities.Seat;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -62,6 +64,15 @@ public class LocationController {
 					.status(HttpStatus.FOUND)
 					.body(locationService.getLocationById(id).get());
 		}
+	}
+	
+	@GetMapping("/{id}/seats")
+	public ResponseEntity<Set<Seat>> getAllSeatsByLocationId(@PathVariable int id){
+		logger.info("get all seats by location (id) - process started");
+		logger.info("request location id: " + id);
+		return ResponseEntity
+				.status(HttpStatus.OK)
+				.body(locationService.getAllSeatsByLocationId(id));
 	}
 	
 	@GetMapping

@@ -39,14 +39,20 @@ public class Project {
 	private String projectCategory;			// TODO: Enum possible
 	
 	@OneToOne(fetch = LAZY)
-	@JoinTable(name = "employee_project",
-	joinColumns = {@JoinColumn(name = "project_id")},
-	inverseJoinColumns = {@JoinColumn(name = "ps_number")})
+//	@JoinTable(name = "employee_project",
+//	joinColumns = {@JoinColumn(name = "project_id")},
+//	inverseJoinColumns = {@JoinColumn(name = "ps_number")})
 	private Employee manager;
 	
 	@Column(name = "customer_code")
 	private int customerCode;
 	@Column(name = "customer_name")
 	private String customerName;
+	
+	@Override
+	public String toString() {
+		return "Project [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", projectCategory="
+				+ projectCategory + ", customerCode=" + customerCode + ", customerName=" + customerName + "]";
+	}
 	
 }

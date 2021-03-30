@@ -2,6 +2,7 @@ package dev.lnt.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import dev.lnt.entities.Location;
+import dev.lnt.entities.Seat;
 import dev.lnt.exceptions.LocationNotFoundException;
 import dev.lnt.repositories.LocationRepository;
 
@@ -67,6 +69,18 @@ public class LocationServiceImpl implements LocationService{
 		else {
 			lr.delete(location);
 			return true;
+		}
+	}
+
+	@Override
+	public Set<Seat> getAllSeatsByLocationId(int id) {
+		Optional<Location> location = getLocationById(id);
+		if(!location.isPresent()) {
+			logger.info("the request location with id [" + id + "]not found");
+			throw new LocationNotFoundException("location with id " + id + " not found in database");
+		}
+		else {
+			return location.get().getSeats();
 		}
 	}
 
