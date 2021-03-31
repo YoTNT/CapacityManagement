@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.lnt.entities.Location;
 import dev.lnt.entities.Seat;
 import dev.lnt.exceptions.SeatNotFoundException;
 import dev.lnt.services.SeatService;
@@ -69,6 +70,15 @@ public class SeatController {
 		logger.info("get all seats - process started");
 		List<Seat> seats = seatService.getAllSeats();
 		logger.info("get all seats including: " + seats);
+		return ResponseEntity
+				.status(HttpStatus.OK)
+				.body(seats);
+	}
+	
+	@GetMapping("/location")
+	public ResponseEntity<List<Seat>> getAllSeatsByLocationId(@RequestBody Location location){
+		logger.info("get seats by location - process started");
+		List<Seat> seats = seatService.getSeatsByLocationId(location);
 		return ResponseEntity
 				.status(HttpStatus.OK)
 				.body(seats);

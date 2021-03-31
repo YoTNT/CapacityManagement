@@ -1,6 +1,5 @@
 package dev.lnt.entities;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -40,9 +39,9 @@ public class Location {
 	@Column(name = "maximum_seats")
 	private int maximumSeats;
 	
-	@OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
-	@JsonIgnore
-	private Set<Seat> seats;
+//	@OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
+//	@JsonIgnore
+//	private Set<Seat> seats;
 
 	@Override
 	public String toString() {

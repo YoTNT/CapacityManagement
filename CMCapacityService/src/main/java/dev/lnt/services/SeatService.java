@@ -3,6 +3,7 @@ package dev.lnt.services;
 import java.util.List;
 import java.util.Optional;
 
+import dev.lnt.entities.Location;
 import dev.lnt.entities.Seat;
 
 public interface SeatService {
@@ -16,4 +17,5 @@ public interface SeatService {
 	
 	boolean deleteSeat(Seat seat);
 	
+	List<Seat> getSeatsByLocationId(Location location);
 }
