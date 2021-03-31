@@ -81,4 +81,13 @@ public class SeatServiceImpl implements SeatService{
 		
 	}
 
+	@Override
+	public List<Seat> querySeatsBySeatLocationAndAvailabilityStatus(
+			String seatLocation, 
+			String availabilityStatus) {
+		
+		logger.info("querying seats by seatLocation and availabilityStatus");
+		return sr.queryBySeatLocationAndAvailabilityStatus(seatLocation, availabilityStatus);
+	}
+
 }

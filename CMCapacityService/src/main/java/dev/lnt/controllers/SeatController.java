@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.lnt.entities.Location;
@@ -66,13 +67,32 @@ public class SeatController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Seat>> getAllSeats(){
-		logger.info("get all seats - process started");
-		List<Seat> seats = seatService.getAllSeats();
-		logger.info("get all seats including: " + seats);
-		return ResponseEntity
-				.status(HttpStatus.OK)
-				.body(seats);
+	public ResponseEntity<List<Seat>> getAllSeats(
+			@RequestParam(value = "seat-location", required = false) String seatLocation,
+			@RequestParam(value = "availability-status", required = false) String availabilityStatus,
+			@RequestParam(value = "min-cost", required = false) Long minCost,
+			@RequestParam(value = "max-cost", required = false) Long maxCost){
+		if(seatLocation == null && availabilityStatus == null) {
+			logger.info("get all seats - process started");
+			List<Seat> seats = seatService.getAllSeats();
+			logger.info("get all seats including: " + seats);
+			return ResponseEntity
+					.status(HttpStatus.OK)
+					.body(seats);
+		}
+		else {
+			logger.info("get all seats by query - process started");
+			logger.info(
+					"query list: [seatLocation]=" + seatLocation +
+					", [availabilityStatus]=" + availabilityStatus + 
+					", [minCost]=" + minCost);
+			List<Seat> seats = seatService.querySeatsBySeatLocationAndAvailabilityStatus(seatLocation, availabilityStatus);
+			logger.info("query all seats including: " + seats);
+			return ResponseEntity
+					.status(HttpStatus.OK)
+					.body(seats);
+		}
+
 	}
 	
 	@GetMapping("/location")

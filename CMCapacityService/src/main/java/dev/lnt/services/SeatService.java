@@ -18,4 +18,8 @@ public interface SeatService {
 	boolean deleteSeat(Seat seat);
 	
 	List<Seat> getSeatsByLocationId(Location location);
+	
+	List<Seat> querySeatsBySeatLocationAndAvailabilityStatus(
+			String seatLocation, 
+			String availabilityStatus);
 }
