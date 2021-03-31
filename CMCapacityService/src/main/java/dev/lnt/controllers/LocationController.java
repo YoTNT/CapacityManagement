@@ -2,7 +2,6 @@ package dev.lnt.controllers;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,14 +65,14 @@ public class LocationController {
 		}
 	}
 	
-	@GetMapping("/{id}/seats")
-	public ResponseEntity<Set<Seat>> getAllSeatsByLocationId(@PathVariable int id){
-		logger.info("get all seats by location (id) - process started");
-		logger.info("request location id: " + id);
-		return ResponseEntity
-				.status(HttpStatus.OK)
-				.body(locationService.getAllSeatsByLocationId(id));
-	}
+//	@GetMapping("/{id}/seats")
+//	public ResponseEntity<Set<Seat>> getAllSeatsByLocationId(@PathVariable int id){
+//		logger.info("get all seats by location (id) - process started");
+//		logger.info("request location id: " + id);
+//		return ResponseEntity
+//				.status(HttpStatus.OK)
+//				.body(locationService.getAllSeatsByLocationId(id));
+//	}
 	
 	@GetMapping
 	public ResponseEntity<List<Location>> getAllLocations(){

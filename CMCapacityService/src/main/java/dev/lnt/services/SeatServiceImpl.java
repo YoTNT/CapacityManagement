@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import dev.lnt.entities.Location;
 import dev.lnt.entities.Seat;
 import dev.lnt.exceptions.SeatNotFoundException;
 import dev.lnt.repositories.SeatRepository;
@@ -69,6 +70,14 @@ public class SeatServiceImpl implements SeatService{
 			sr.delete(seat);
 			return true;
 		}
+		
+	}
+
+	@Override
+	public List<Seat> getSeatsByLocationId(Location location) {
+		
+		logger.info("try to get all seats by location id using query with location id: " + location);
+		return sr.findByLocation(location);
 		
 	}
 

@@ -37,9 +37,9 @@ public class Seat {
 	@JsonIgnoreProperties({"seats"})
 	private Location location;
 	
-	@OneToOne(mappedBy = "seat")
-	@JsonIgnore
-	private Employee employee; 
+//	@OneToOne(mappedBy = "seat")
+//	@JsonIgnore
+//	private Employee employee; 
 	
 	@Column(name = "seat_location")
 	private String seatLocation;

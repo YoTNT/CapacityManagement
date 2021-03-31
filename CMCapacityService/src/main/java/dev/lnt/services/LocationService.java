@@ -18,6 +18,6 @@ public interface LocationService {
 	
 	boolean deleteLocation(Location location);
 	
-	Set<Seat> getAllSeatsByLocationId(int id);
+//	Set<Seat> getAllSeatsByLocationId(int id);
 	
 }

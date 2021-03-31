@@ -72,16 +72,16 @@ public class LocationServiceImpl implements LocationService{
 		}
 	}
 
-	@Override
-	public Set<Seat> getAllSeatsByLocationId(int id) {
-		Optional<Location> location = getLocationById(id);
-		if(!location.isPresent()) {
-			logger.info("the request location with id [" + id + "]not found");
-			throw new LocationNotFoundException("location with id " + id + " not found in database");
-		}
-		else {
-			return location.get().getSeats();
-		}
-	}
+//	@Override
+//	public Set<Seat> getAllSeatsByLocationId(int id) {
+//		Optional<Location> location = getLocationById(id);
+//		if(!location.isPresent()) {
+//			logger.info("the request location with id [" + id + "]not found");
+//			throw new LocationNotFoundException("location with id " + id + " not found in database");
+//		}
+//		else {
+//			return location.get().getSeats();
+//		}
+//	}
 
 }

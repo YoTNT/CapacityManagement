@@ -32,19 +32,19 @@ public class Employee {
 	private int id;
 
 	@OneToOne(fetch = FetchType.LAZY)
-//	@JoinTable(name = "employee_seat",
-//	joinColumns = {@JoinColumn(name = "ps_number")},
-//	inverseJoinColumns = {@JoinColumn(name = "seat_id")}
+	@JoinTable(name = "employee_seat",
+	joinColumns = {@JoinColumn(name = "ps_number")},
+	inverseJoinColumns = {@JoinColumn(name = "seat_id")})
 	@JsonIgnore
 	private Seat seat;
 	
-	@OneToOne(mappedBy = "manager", fetch = FetchType.LAZY)
-	@JsonIgnore
-	private Project project;
+//	@OneToOne(mappedBy = "manager", fetch = FetchType.LAZY)
+//	@JsonIgnore
+//	private Project project;
 	
-	@OneToOne(mappedBy = "employee", fetch = FetchType.LAZY)
-	@JsonIgnore
-	private User user;
+//	@OneToOne(mappedBy = "employee", fetch = FetchType.LAZY)
+//	@JsonIgnore
+//	private User user;
 	
 	@Column(name = "name")
 	private String name;
