@@ -39,13 +39,13 @@ public class Employee {
 	@JsonIgnore
 	private Seat seat;
 	
-	@OneToOne(mappedBy = "manager", fetch = FetchType.LAZY)
-	@JsonIgnore
-	private Project project;
-	
-	@OneToOne(mappedBy = "employee", fetch = FetchType.LAZY)
-	@JsonIgnore
-	private User user;
+//	@OneToOne(mappedBy = "manager", fetch = FetchType.LAZY)
+//	@JsonIgnore
+//	private Project project;
+//	
+//	@OneToOne(mappedBy = "employee", fetch = FetchType.LAZY)
+//	@JsonIgnore
+//	private User user;
 	
 	@Column(name = "name")
 	private String name;

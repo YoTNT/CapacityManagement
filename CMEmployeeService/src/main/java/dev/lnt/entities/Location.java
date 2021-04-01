@@ -40,9 +40,9 @@ public class Location {
 	@Column(name = "maximum_seats")
 	private int maximumSeats;
 	
-	@OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
-	@JsonIgnore
-	private Set<Seat> seats;
+//	@OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
+//	@JsonIgnore
+//	private Set<Seat> seats;
 
 	@Override
 	public String toString() {

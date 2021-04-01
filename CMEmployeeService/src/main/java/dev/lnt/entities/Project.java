@@ -53,5 +53,10 @@ public class Project {
 	@Column(name = "customer_name")
 	private String customerName;
 	
+	@Override
+	public String toString() {
+		return "Project [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", projectCategory="
+				+ projectCategory + ", customerCode=" + customerCode + ", customerName=" + customerName + "]";
+	}
 	
 }

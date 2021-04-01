@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,11 +33,12 @@ public class Seat {
 	
 	@ManyToOne
 	@JoinColumn(name = "location_id")
+	@JsonIgnoreProperties({"seats"})
 	private Location location;
 	
-	@OneToOne(mappedBy = "seat")
-	@JsonIgnore
-	private Employee employee;
+//	@OneToOne(mappedBy = "seat")
+//	@JsonIgnore
+//	private Employee employee;
 	
 	@Column(name = "seat_location")
 	private String seatLocation;
@@ -47,7 +49,7 @@ public class Seat {
 	
 	@Override
 	public String toString() {
-		return "Seat [id=" + id + ", location=" + location + ", seatLocation=" + seatLocation + ", cost=" + cost
+		return "Seat [id=" + id + ", seatLocation=" + seatLocation + ", cost=" + cost
 				+ ", availabilityStatus=" + availabilityStatus + "]";
 	}
 	
