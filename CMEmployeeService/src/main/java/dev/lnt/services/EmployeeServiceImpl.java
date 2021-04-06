@@ -34,6 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
+	@Cacheable
 	public Optional<Employee> getEmployeeById(int id) {	// TODO: Defensive Copy Might Need
 		return er.findById(id);
 	}
@@ -90,6 +91,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
+	@Cacheable
 	public Seat getSeatByEmployeeId(int id) {
 		logger.info("get seat using employee'id - process started");
 		Optional<Employee> employee = er.findById(id);

@@ -33,6 +33,7 @@ public class SeatServiceImpl implements SeatService{
 	}
 
 	@Override
+	@Cacheable
 	public Optional<Seat> getSeatById(int id) {
 		return sr.findById(id);
 	}
@@ -74,6 +75,7 @@ public class SeatServiceImpl implements SeatService{
 	}
 
 	@Override
+	@Cacheable
 	public List<Seat> getSeatsByLocationId(Location location) {
 		
 		logger.info("try to get all seats by location id using query with location id: " + location);
@@ -82,6 +84,7 @@ public class SeatServiceImpl implements SeatService{
 	}
 
 	@Override
+	@Cacheable
 	public List<Seat> querySeatsBySeatLocationAndAvailabilityStatus(
 			String seatLocation, 
 			String availabilityStatus) {

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import dev.lnt.exceptions.ProjectNotFoundException;
 import dev.lnt.repositories.ProjectRepository;
 
 @Service
+@CacheConfig(cacheNames = {"projects"})
 public class ProjectServiceImpl implements ProjectService{
 
 	@Autowired
@@ -31,12 +33,13 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 
 	@Override
+	@Cacheable
 	public Optional<Project> getProjectById(int id){	// TODO: Defensive Copy Might Need
 		return pr.findById(id);
 	}
 
 	@Override
-	@Cacheable("projects")
+	@Cacheable
 	public List<Project> getAllProjects() {
 		List<Project> projects = (List<Project>)pr.findAll();
 		return projects;
@@ -69,7 +72,5 @@ public class ProjectServiceImpl implements ProjectService{
 		}
 		
 	}
-
-	
 	
 }

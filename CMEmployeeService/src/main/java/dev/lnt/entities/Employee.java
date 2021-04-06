@@ -36,7 +36,7 @@ public class Employee {
 	@JoinTable(name = "employee_seat",
 	joinColumns = {@JoinColumn(name = "ps_number")},
 	inverseJoinColumns = {@JoinColumn(name = "seat_id")})
-	@JsonIgnore
+//	@JsonIgnore
 	private Seat seat;
 	
 //	@OneToOne(mappedBy = "manager", fetch = FetchType.LAZY)
